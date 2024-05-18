@@ -3,7 +3,6 @@ version: '3'
 services:
   mysql:
     image: mysql:5.7
-    platform: linux/x86_64
     container_name: mysql
     restart: always
     environment:
@@ -14,6 +13,20 @@ services:
       - "3306:3306"
     volumes:
       - .docker/mysql:/var/lib/mysql
+
+  migrate:
+    image: mysql:5.7
+    container_name: migrate
+    depends_on:
+      - mysql
+    volumes:
+      - ./database/migrations:/docker-entrypoint-initdb.d
+      - ./run-migrations.sh:/run-migrations.sh
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: orders
+      MYSQL_PASSWORD: root
+    entrypoint: [ "sh", "/run-migrations.sh" ]
 
   rabbitmq:
     image: rabbitmq:3-management

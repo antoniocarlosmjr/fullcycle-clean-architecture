@@ -3,4 +3,4 @@ CREATE TABLE IF NOT EXISTS orders (
     price DECIMAL(10, 2) NOT NULL,
     tax DECIMAL(10, 2) NOT NULL,
     final_price DECIMAL(10, 2) NOT NULL
-);
+)

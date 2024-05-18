@@ -4,7 +4,7 @@
   - `docker-compose up -d`
 
 * Execute a migração do banco de dados:
-  - `migrate -path=database/migrations -database "mysql://root:root@tcp(localhost:3306)/orders" -verbose up`
+  - `make migrate`
 
 * Para rodar o projeto, execute o comando:
 * `cd cmd/ordersystem/  && go run main.go wire_gen.go`
