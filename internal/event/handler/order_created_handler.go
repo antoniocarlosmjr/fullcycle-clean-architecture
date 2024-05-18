@@ -21,7 +21,7 @@ func NewOrderCreatedHandler(rabbitMQChannel *amqp091.Channel) *OrderCreatedHandl
 
 func (h *OrderCreatedHandler) Handle(event events.EventInterface, wg *sync.WaitGroup) {
 	defer wg.Done()
-	fmt.Printf("Order created: %v", event.GetPayload())
+	fmt.Printf("Order created: %#v", event.GetPayload())
 	jsonOutput, _ := json.Marshal(event.GetPayload())
 
 	msgRabbitmq := amqp091.Publishing{
